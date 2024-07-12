@@ -1,6 +1,6 @@
-# React + Vite
+# First MD
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a webservice that aims to bridge patients and health care workers closer than ever before.
 
 Currently, two official plugins are available:
 
