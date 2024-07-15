@@ -5,9 +5,10 @@ export default {
   ],
   theme: {
     extend: {
+      inset: {
+        '3px': '3px',
+      },
       colors: {
-        
-
         blue: {
           DEFAULT : "#03045E",
           25: "#C4D1FD",

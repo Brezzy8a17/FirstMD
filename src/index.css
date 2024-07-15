@@ -40,10 +40,7 @@ canvas {
   }
   
   .btn {
-    @apply px-5 py-3 items-center rounded-3xl bg-pink text-black
-    hover:bg-transparent 
-    border 
-    border-transparent 
+    @apply px-5 py-3 items-center rounded-3xl bg-pink border-pink text-black hover:bg-transparent  
     hover:text-white
     hover:bg-pink-100
     hover:border-pink-100 cursor-pointer ;
@@ -70,6 +67,9 @@ canvas {
 
   .feature-text {
     @apply text-gray max-w-md text-lg md:text-xl font-semibold opacity-0 translate-y-[100px]
+  }
+  .form{
+    @apply flex flex-col rounded-md border-0  text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6
   }
 
   .feature-text-container {

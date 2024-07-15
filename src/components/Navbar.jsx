@@ -6,15 +6,16 @@ import { appleImg, searchImg } from '../utils';
 
 const Navbar = () => {
   const navLists = 
-  [{ name: "Quick Look", path: "./QuickLook" }, 
+  [ { name: "Home", path: "/"},
+    { name: "Quick Look", path: "./QuickLook" }, 
     { name: "Schedule", path: "./Schedule"},
     { name: "About Us", path: "./AboutUs"},
-    { name: "Sign Up", path: "./SignUp"}]  ;
+    { name: "Login", path: "./Login"}]  ;
 
   return (
-    <header className='w-full py-3 sm:py-6 px-5 flex justify-between items-center bg-blue-100'>
+    <header className='w-full py-3 sm:py-6 px-5 flex justify-between items-center bg-blue-100 fixed top-0 z-50'>
       <nav className='flex w-full screen-max-width cursor-pointer'>
-        <img src={appleImg} alt="logo" width={14} height={18} />
+          <img src={appleImg} alt="logo" width={14} height={18} />
 
         <div className='flex flex-1 items-center justify-center max-sm:hidden'>
           {navLists.map((nav) => (
