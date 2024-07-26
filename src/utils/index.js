@@ -1,9 +1,9 @@
- //importing media etc. to use later 
-import search from "/assets/images/search.svg";
+//importing media etc. to use later
 import apple from "/assets/images/apple.svg";
-import background from "/assets/images/background.svg"
-import login from "/assets/images/login.svg"
-import signup from "/assets/images/signup.svg"
+import background from "/assets/images/background.svg";
+import login from "/assets/images/login.svg";
+import search from "/assets/images/search.svg";
+import signup from "/assets/images/signup.svg";
 
 //exporting the media as a reformat
 export const searchImg = search;

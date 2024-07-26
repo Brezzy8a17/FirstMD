@@ -1,65 +1,90 @@
-import React, { useState } from 'react';
-import { loginImg } from '../utils';
-import {Link} from "react-router-dom";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { loginImg } from "../utils";
 
-//using appwrite to manage login
-
-import {account, ID} from "../lib/appwrite";
+import { useAuth } from "../utils/AuthContext";
 
 const Login = () => {
-  //this is for the form login
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-  const [AdminID, setAdminID] = useState("")
+  const { user, LoginUser } = useAuth();
 
-  //log the user if signed in
-  const [loggedInUser, setloggedInUser] = useState(null);
+  const LoginForm = useRef(null);
 
+  //handle sumbit of the cred
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = LoginForm.current.email.value;
+    const password = LoginForm.current.password.value;
+    const adminID = LoginForm.current.adminID.value;
 
-  async function login(email, password) {
-    await account.createEmailPasswordSession(email, password);
-    setLoggedInUser(await account.get());
-  }
+    if (adminID == null) {
+      const userInfo = { email, password };
+      LoginUser(userInfo);
+    } else {
+      const userInfo = { email, password, adminID };
+      LoginUser(userInfo);
+    }
+  };
 
   return (
-    <div className="flex my-0 justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen">
       <div className="w-1/2">
-        <img src={loginImg} width={800} height={520} alt="login" className='mx-5' />
+        <img
+          src={loginImg}
+          width={800}
+          height={520}
+          alt="Login"
+          className="mx-5"
+        />
       </div>
 
       <div className="w-1/2 flex flex-col justify-center items-center">
-        <a className=" text-blue-100 mb-4 text-xl justify-center font-semibold">Login</a>
+        <a className=" text-blue-700 mb-4 text-xl justify-center font-semibold">
+          Login
+        </a>
+        <form
+          ref={LoginForm}
+          onSubmit={handleSubmit}
+          className="form min-w-96 gap-4 opacity-1"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            className="p-2 border rounded"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+            className="p-2 border rounded"
+          />
+          <input
+            type="text"
+            name="adminID"
+            placeholder="Admin ID"
+            className="p-2 border rounded"
+          />
 
-        <form onSubmit={handleLogin} className="form min-w-96 my-2 gap-4 opacity-1">
-            <input
-              type="email"
-              placeholder="Email"
-              value={Email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="p-2 border rounded"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={Password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="p-2 border rounded"
-            />
-            <input
-              type = "AdminID"
-              placeholder='Admin ID'
-              value ={AdminID}
-              onChange={(e) => setAdminID(e.target.value)}
-              className= "p-2 rounded"
-            />
-            <button type="submit" className="p-2 bg-blue-500 text-white rounded">Submit</button>
+          <button
+            type="submit"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            {" "}
+            Login{" "}
+          </button>
         </form>
-        <p> Are you a new user? <Link to="/SignUp" className='text-blue-100' >Sign Up</Link></p>
+
+        <p className="mt-4">
+          Are you a new user?{" "}
+          <Link to="/SignUp" className="text-blue-100">
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );
 };
-//create an admin panel
+
 export default Login;
